@@ -1,0 +1,27 @@
+
+@font-face {
+  font-family: 'Sackers Gothic Light AT';
+  src: url('./fonts/Sackers Gothic Light AT.otf') format('otf');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Sackers Gothic Light AT', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root {
+  font-family: 'Sackers Gothic Light AT', sans-serif;
+}
+
