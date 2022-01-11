@@ -4,8 +4,24 @@ import { useNavigate } from 'react-router-dom'
 import { signIn } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
 
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+// import Form from 'react-bootstrap/Form'
+// import Button from 'react-bootstrap/Button'
+
+
+import {
+    Flex,
+    Box,
+    FormControl,
+    FormLabel,
+    FormErrorMessage,
+    FormHelperText,
+    Input,
+    Button,
+    Heading,
+    Switch,
+  } from '@chakra-ui/react'
+
+
 
 const SignIn = (props) => {
 	// constructor(props) {
@@ -55,38 +71,38 @@ const SignIn = (props) => {
 	}
 
     return (
-        <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Sign In</h3>
-                <Form onSubmit={onSignIn}>
-                    <Form.Group controlId='email'>
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control
-                            required
+        <Flex width="full" align="center" justifyContent="center">
+            <Box p={2}>
+                <Box textAlign="center">
+                    <Heading>Sign In</Heading>
+                </Box>
+            <Box my={4} textAlign="left">
+                <form onSubmit={onSignIn}>
+                    <FormControl>
+                        <FormLabel>Email</FormLabel>
+                        <Input required
                             type='email'
                             name='email'
                             value={email}
                             placeholder='Enter email'
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group controlId='password'>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                            required
+                            onChange={e => setEmail(e.target.value)}/>
+                    </FormControl>
+                    <FormControl mt={6}>
+                        <FormLabel>Password</FormLabel>
+                        <Input required
                             name='password'
                             value={password}
                             type='password'
                             placeholder='Password'
-                            onChange={e => setPassword(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Button variant='primary' type='submit'>
-                        Submit
+                            onChange={e => setPassword(e.target.value)} />
+                    </FormControl>
+                    <Button width="full" mt={4} type="submit">
+                    Sign Up!
                     </Button>
-                </Form>
-            </div>
-        </div>
+                </form>
+            </Box>
+            </Box>
+        </Flex>
     )
 }
 

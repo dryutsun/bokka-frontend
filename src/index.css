@@ -1,12 +1,4 @@
 
-@font-face {
-  font-family: 'Sackers Gothic Light AT';
-  src: url('./fonts/Sackers Gothic Light AT.otf') format('otf');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Sackers Gothic Light AT', 'Roboto', 'Oxygen',
@@ -22,6 +14,6 @@ code {
 }
 
 #root {
-  font-family: 'Sackers Gothic Light AT', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
