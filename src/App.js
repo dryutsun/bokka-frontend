@@ -17,6 +17,7 @@ import ChangePassword from "./components/auth/ChangePassword";
 import PorterDisplay from "./components/Pages/Porter/PorterDisplay";
 import EditOrder from "./components/Pages/User/EditOrder";
 import DisplayOrder from "./components/Pages/User/DisplayOrder";
+import AddOrder from "./components/Pages/User/AddOrder";
 // import Header from './components/Header/Header'
 
 const App = () => {
@@ -24,10 +25,12 @@ const App = () => {
   const [msgAlerts, setMsgAlerts] = useState([]);
   const [userOrders, setUserOrders] = useState([]);
   const [porterOrders, setPorterOrders] = useState([]);
+  const [deliverable, setDeliverable] = useState([])
 
   useEffect(() => {
     getAllUserOrders();
     getAllPorterOrders();
+    getAllOrdersWithoutPorters();
   }, [user]);
 
   console.log("user in app", user);
@@ -50,6 +53,32 @@ const App = () => {
     });
   };
 
+  const getAllOrdersWithoutPorters = () => {
+    if (user !== null && user.porter == true) {
+      fetch(`http://localhost:8000/orders/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((allUserOrders) => {
+
+        const ordersWithoutPorter = allUserOrders.orders.filter((orders)=>{
+          return (!orders.porter)
+        })
+
+          console.log("this is all orders" , allUserOrders.orders);
+          console.log("all order w/o porter", ordersWithoutPorter)
+          setDeliverable(ordersWithoutPorter);
+        });
+    }
+}
+
+
+
+
   // To Refactor into Context and Reducer Later
   // NOTE: THIS WORKS BUT STATE WILL REFLECT ONLY IN COMPONENT INSPECTOR
   const getAllUserOrders = () => {
@@ -64,7 +93,7 @@ const App = () => {
       })
         .then((response) => response.json())
         .then((allUserOrders) => {
-          console.log(allUserOrders.orders);
+          console.log("this is user orders" , allUserOrders.orders);
           setUserOrders(allUserOrders.orders);
         });
     }
@@ -82,7 +111,7 @@ const App = () => {
       })
         .then((response) => response.json())
         .then((allPorterOrders) => {
-          console.log(allPorterOrders.orders);
+          console.log("getting porterOrders", allPorterOrders.orders);
           setPorterOrders(allPorterOrders.orders);
         });
     }
@@ -91,6 +120,7 @@ const App = () => {
   return (
     <Fragment>
       <Header user={user} />
+      {/* Auth Pages */}
       <Routes>
         <Route path="/" element={<Home msgAlert={msgAlert} user={user} />} />
         <Route
@@ -109,34 +139,63 @@ const App = () => {
             </RequireAuth>
           }
         />
-        <Route path="/porter-profile" element={<PorterDisplay />} />
-        <Route path="/porter_index" element={<PorterOrderIndex />} />
-        <Route
-          path="/userorder_index"
-          element={
-            <RequireAuth user={user}>
-              <UserOrderIndex userOrders={userOrders} user={user} />
-            </RequireAuth>
-          }
-        />
-        <Route path="/edit/:orderid" element={
-          <RequireAuth user={user}>
-          <EditOrder user={user} />
-        </RequireAuth>
-        } />
-        
-        
-        <Route path="/display/:orderid" element={
-          <RequireAuth user={user}>
-            <DisplayOrder user={user} />
-          </RequireAuth>
-        }/>
-
         <Route
           path="/change-password"
           element={
             <RequireAuth user={user}>
               <ChangePassword msgAlert={msgAlert} user={user} />
+            </RequireAuth>
+          }
+        />
+        {/* Porter Pages */}
+        <Route path="/porter-profile" element={<PorterDisplay />} />
+        <Route
+          path="/porter_index"
+          element={
+            <RequireAuth user={user}>
+              <PorterOrderIndex porterOrders={porterOrders} getAllPorterOrders={getAllPorterOrders}/>
+            </RequireAuth>
+          }
+        />
+
+        {/* User Request Pages */}
+        <Route
+          path="/userorder_index"
+          element={
+            <RequireAuth user={user}>
+              <UserOrderIndex
+                userOrders={userOrders}
+                user={user}
+                getAllUserOrders={getAllUserOrders}
+              />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/edit/:orderid"
+          element={
+            <RequireAuth user={user}>
+              <EditOrder user={user} />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/display/:orderid"
+          element={
+            <RequireAuth user={user}>
+              <DisplayOrder user={user} />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/order/new"
+          element={
+            <RequireAuth user={user}>
+              <AddOrder
+                user={user}
+                getAllUserOrders={getAllUserOrders}
+                userOrders={userOrders}
+              />
             </RequireAuth>
           }
         />

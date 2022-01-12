@@ -36,6 +36,18 @@ const SignUp = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
+    const [porter, setPorter] = useState(true)
+
+
+    // Write a function to convert the boolean value into a truthy or falsy value
+    // let portervalue = 0
+    // if (porter === true) { 
+    //     portervalue = 1 } 
+    //     else {
+    //     portervalue = 0 }
+
+    //     console.log(portervalue)
+            
 
     const navigate = useNavigate()
 
@@ -44,8 +56,8 @@ const SignUp = (props) => {
 
 		const { msgAlert, setUser } = props
 
-        const credentials = {email, password, passwordConfirmation}
-
+        const credentials = {email, password, passwordConfirmation, porter}
+        console.log(credentials)
 		signUp(credentials)
 			.then(() => signIn(credentials))
 			.then((res) => setUser(res.data.user))
@@ -61,6 +73,7 @@ const SignUp = (props) => {
                 setEmail('')
                 setPassword('')
                 setPasswordConfirmation('')
+                setPorter(true)
 				msgAlert({
 					heading: 'Sign Up Failed with error: ' + error.message,
 					message: messages.signUpFailure,
@@ -102,12 +115,12 @@ const SignUp = (props) => {
                             name='passwordConfirmation'
                             value={passwordConfirmation}
                             type='password'
-                            placeholder='Password'
-                            onChange={e => setPassword(e.target.value)} />
+                            placeholder='passwordConfirmation'
+                            onChange={e => setPasswordConfirmation(e.target.value)} />
                     </FormControl>
                     <FormControl mt={6}>
-                        <FormLabel>Porter?</FormLabel>
-                        <Switch size='lg' id='porter'/>
+                        <FormLabel>Sign Up As Porter?</FormLabel>
+                        <Switch size='lg' id='porter' value={porter} onChange={e => setPorter(!porter)} defaultChecked/>
                     </FormControl>
                     <Button width="full" mt={4} type="submit">
                     Sign Up!

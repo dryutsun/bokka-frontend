@@ -10,6 +10,7 @@ export const signUp = (credentials) => {
 				email: credentials.email,
 				password: credentials.password,
 				password_confirmation: credentials.passwordConfirmation,
+				porter: credentials.porter
 			},
 		},
 	})

@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import { Text } from "@chakra-ui/react"
 const linkStyle = {
   color: "white",
   textDecoration: "none",
@@ -23,6 +24,11 @@ const authenticatedOptions = (
     <Nav.Link>
       <Link to="userorder_index" style={linkStyle}>
         UserOrderTest
+      </Link>
+    </Nav.Link>
+    <Nav.Link>
+      <Link to="porter_index" style={linkStyle}>
+        Porter Order Index
       </Link>
     </Nav.Link>
   </>
@@ -59,6 +65,7 @@ const Header = ({ user }) => (
       <Link to="/" style={linkStyle}>
         B.R.I.D.G.E.S
       </Link>
+      <Text>{process.env.REACT_APP_MAPBOX_API_KEY}</Text>
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">

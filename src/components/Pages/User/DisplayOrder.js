@@ -27,7 +27,7 @@ const DisplayOrder = (props) => {
 
   useEffect(()=> {
     getCurrentOrder()
-  }, [])
+  }, [props])
 
 
 
