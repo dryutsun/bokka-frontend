@@ -20,6 +20,11 @@ const authenticatedOptions = (
         Sign Out
       </Link>
     </Nav.Link>
+    <Nav.Link>
+      <Link to="userorder_index" style={linkStyle}>
+        UserOrderTest
+      </Link>
+    </Nav.Link>
   </>
 );
 

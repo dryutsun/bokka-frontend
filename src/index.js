@@ -4,12 +4,12 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import { ChakraProvider } from '@chakra-ui/react'
-import { extendTheme } from '@chakra-ui/react'
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import { extendTheme } from "@chakra-ui/react";
 
 const colors = {
   brand: {
@@ -22,20 +22,16 @@ const colors = {
     600: "#417B79",
     700: "#D7783E",
     800: "#306150",
-    900: "#080819"
-  }
+    900: "#080819",
+  },
 };
+
 const config = {
   initialColorMode: "dark",
-  useSystemColorMode: false
+  useSystemColorMode: false,
 };
 
-
 const theme = extendTheme({ colors, config });
-
-
-
-
 
 ReactDOM.render(
   <ChakraProvider theme={theme}>
