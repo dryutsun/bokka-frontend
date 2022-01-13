@@ -27,7 +27,6 @@ const UserOrderIndex = (props) => {
   // Requires handling to determine if an order has a porter --> This is bad logic, not all orders will have been accepted by porters.
   const userOrderIndex = props.userOrders.map((orders) => {
     console.log(orders.porter);
-    console.log();
     const orderid = "" + orders._id;
     if (!orders.porter) {
       return (

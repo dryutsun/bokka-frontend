@@ -11,13 +11,17 @@ import Home from "./components/Home";
 import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn";
 import SignOut from "./components/auth/SignOut";
-import PorterOrderIndex from "./components/Pages/Porter/PorterOrderIndex";
-import UserOrderIndex from "./components/Pages/User/UserOrderIndex";
 import ChangePassword from "./components/auth/ChangePassword";
+// Porter Components
+import PorterOrderIndex from "./components/Pages/Porter/PorterOrderIndex";
 import PorterDisplay from "./components/Pages/Porter/PorterDisplay";
+import PorterEditOrder from "./components/Pages/Porter/PorterEditOrder"
+import OrderWithoutPorter from './components/Pages/Porter/OrderWithoutPorter'
+// User Components
 import EditOrder from "./components/Pages/User/EditOrder";
 import DisplayOrder from "./components/Pages/User/DisplayOrder";
 import AddOrder from "./components/Pages/User/AddOrder";
+import UserOrderIndex from "./components/Pages/User/UserOrderIndex";
 // import Header from './components/Header/Header'
 
 const App = () => {
@@ -154,6 +158,30 @@ const App = () => {
           element={
             <RequireAuth user={user}>
               <PorterOrderIndex porterOrders={porterOrders} getAllPorterOrders={getAllPorterOrders}/>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/withoutporterorder_index"
+          element={
+            <RequireAuth user={user}>
+              <OrderWithoutPorter getAllOrdersWithoutPorters={getAllOrdersWithoutPorters} deliverable={deliverable} user={user}/>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/porteredit/:orderid"
+          element={
+            <RequireAuth user={user}>
+              <PorterEditOrder getAllOrdersWithoutPorters={getAllOrdersWithoutPorters} deliverable={deliverable} user={user}/>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/porterdisplay/:orderid"
+          element={
+            <RequireAuth user={user}>
+              <PorterDisplay getAllOrdersWithoutPorters={getAllOrdersWithoutPorters} deliverable={deliverable} user={user}/>
             </RequireAuth>
           }
         />

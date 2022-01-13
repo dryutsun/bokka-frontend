@@ -32,7 +32,7 @@ const PorterOrderIndex = (props) => {
           <Flex direction="column">
             <Heading fontSize="xl">ORDER : {orders.title}</Heading>
             <Text fontSize="lg">CURRENT STATUS: {orders.status}</Text>
-            <Link to={`/display/${orderid}`} orders={orders}>
+            <Link to={`/porterdisplay/${orderid}`} orders={orders}>
               <Button colorScheme="blue">See Details</Button>
             </Link>
           </Flex>

@@ -31,6 +31,11 @@ const authenticatedOptions = (
         Porter Order Index
       </Link>
     </Nav.Link>
+    <Nav.Link>
+      <Link to="withoutporterorder_index" style={linkStyle}>
+        Porter Without Order Index
+      </Link>
+    </Nav.Link>
   </>
 );
 
@@ -65,7 +70,7 @@ const Header = ({ user }) => (
       <Link to="/" style={linkStyle}>
         B.R.I.D.G.E.S
       </Link>
-      <Text>{process.env.REACT_APP_MAPBOX_API_KEY}</Text>
+      {/* <Text>{process.env.REACT_APP_MAPBOX_API_KEY}</Text> */}
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
