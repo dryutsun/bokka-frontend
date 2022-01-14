@@ -17,7 +17,7 @@ import {
     IconButton,
   } from "@chakra-ui/react";
   
-  
+  import UserMap from '../../Maps/UserMap'
   import { MdListAlt } from "react-icons/md/";
   import { GrAdd } from "react-icons/gr";
   import { useState, useEffect } from "react";
@@ -103,6 +103,7 @@ import {
             <Heading>Add New Order</Heading>
           </Box>
           <Box my={4} textAlign="left">
+            <UserMap />
             <form onSubmit={AddOrderForm}>
               <FormControl>
                 <FormLabel>Title</FormLabel>

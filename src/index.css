@@ -18,3 +18,7 @@ code {
 }
 
 li {list-style-type: none;}
+
+.map-container {
+  height: 400px;
+  }

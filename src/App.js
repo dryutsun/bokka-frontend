@@ -203,7 +203,7 @@ const App = () => {
           path="/edit/:orderid"
           element={
             <RequireAuth user={user}>
-              <EditOrder user={user} />
+              <EditOrder user={user} getAllUserOrders={getAllUserOrders}/>
             </RequireAuth>
           }
         />
