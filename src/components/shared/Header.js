@@ -65,9 +65,9 @@ const alwaysOptions = (
 );
 
 const Header = ({ user }) => (
-  <Navbar bg="primary" variant="dark" expand="md">
+  <Navbar bg="dark" variant="dark" expand="md">
     <Navbar.Brand>
-      <Link to="/" style={linkStyle}>
+      <Link to="/" className="ml-3 title-fonts" >
         B.R.I.D.G.E.S
       </Link>
       {/* <Text>{process.env.REACT_APP_MAPBOX_API_KEY}</Text> */}

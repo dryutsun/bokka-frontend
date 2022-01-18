@@ -55,7 +55,7 @@ const EditOrder = (props) => {
   const getCurrentOrder = () => {
     setLoading(true);
     console.log(loading);
-    fetch(`http://localhost:8000/orders/${orderid}`, {
+    fetch(`${apiUrl}/orders/${orderid}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ const EditOrder = (props) => {
 
     console.log("jsonbody", preJSONBODY2);
 
-    fetch(`http://localhost:8000/orderitems/${orderid}`, {
+    fetch(`${apiUrl}/orderitems/${orderid}`, {
       method: "POST",
       body: JSON.stringify(preJSONBODY2),
       headers: {
@@ -98,7 +98,13 @@ const EditOrder = (props) => {
       })
       .then((postedOrderItems) => {
         props.getAllUserOrders();
-        setInputList([]);
+        setInputList([{
+          itemDescription: "",
+          weight: "",
+          itemType: "",
+          customerComment: "",
+          imageuri: "",
+        }]);
       });
   };
 
@@ -144,7 +150,7 @@ const EditOrder = (props) => {
     };
     console.log("this PJB", preJSONBody);
 
-    fetch(`http://localhost:8000/orders/${orderid}`, {
+    fetch(`${apiUrl}/orders/${orderid}`, {
       method: "PATCH",
       body: JSON.stringify(preJSONBody),
       headers: {
@@ -361,7 +367,7 @@ const EditOrder = (props) => {
                 </Box>
               );
             })}
-            <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div>
+            {/* <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div> */}
 
             <Button width="full" mt={4} type="submit">
               submit

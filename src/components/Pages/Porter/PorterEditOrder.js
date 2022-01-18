@@ -17,12 +17,12 @@ import {
   IconButton,
   Select,
 } from "@chakra-ui/react";
+import styled from "styled-components"
 
 import { MdListAlt } from "react-icons/md/";
 import { GrAdd } from "react-icons/gr";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Route, Routes } from "react-router-dom";
 
 const PorterEditOrder = (props) => {
   console.log("props in edit", props);
@@ -37,7 +37,8 @@ const PorterEditOrder = (props) => {
   const [orderAccept, setorderAccept] = useState("");
   const [select, setSelect] = useState("");
 
-  const navigate = useNavigate();
+  let navigate = useNavigate();
+  
 
   useEffect(() => {
     getCurrentOrder();
@@ -47,7 +48,7 @@ const PorterEditOrder = (props) => {
   const getCurrentOrder = () => {
     setLoading(true);
     console.log(loading);
-    fetch(`http://localhost:8000/orders/${orderid}`, {
+    fetch(`${apiUrl}/orders/${orderid}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -90,7 +91,7 @@ const PorterEditOrder = (props) => {
       },
     };
     console.log("this PJB", preJSONBody);
-    fetch(`http://localhost:8000/orders/${orderid}`, {
+    fetch(`${apiUrl}/orders/${orderid}`, {
       method: "PATCH",
       body: JSON.stringify(preJSONBody),
       headers: {
@@ -99,19 +100,13 @@ const PorterEditOrder = (props) => {
       },
     })
       .then((response) => response.json())
-      .then((editedVideo) => {
-        props.getAllUserOrders();
-        setForm({
-          title: "",
-          orderOriginLong: "",
-          orderOriginLat: "",
-          orderDestLong: "",
-          orderDestLat: "",
-        });
-        setRedirect(true);
-        navigate(`/display/${orderid}`);
+      .then((editedVideo) => { 
+        console.log("this get hit?")
+        props.getAllUserOrders();;
       })
       .catch((err) => console.error);
+    
+      navigate(`/porter_index`, { replace: true })
   };
 
   console.log("this is form", form);
@@ -135,9 +130,7 @@ const PorterEditOrder = (props) => {
     );
   });
 
-  // const orderItemsMap = newform.orderItems.map(order=>console.log(order))
-  // const orderItemsMap = form.orderItems.map((order) => {console.log(order)})
-  // console.log(orderItemsMap)
+
 
   return (
     <Flex width="full" align="center" justifyContent="center">
@@ -175,59 +168,8 @@ const PorterEditOrder = (props) => {
               </Select>
             </FormControl>
 
-            {/* <FormControl mt={6}>
-              <FormLabel>Origin Longitude</FormLabel>
-              <Input
-                required
-                name="orderOriginLong"
-                value={form.orderOriginLong}
-                type="orderOriginLong"
-                placeholder="Enter Original Longitude"
-                onChange={handleInputChange}
-              />
-            </FormControl>
-
-            <FormControl mt={6}>
-              <FormLabel>Origin Latitiude</FormLabel>
-              <Input
-                required
-                name="orderOriginLat"
-                value={form.orderOriginLong}
-                type="orderOriginLat"
-                placeholder="orderOriginLat"
-                onChange={handleInputChange}
-              />
-            </FormControl>
-
-            <FormControl mt={6}>
-              <FormLabel>Destination Longitude</FormLabel>
-              <Input
-                required
-                name="orderDestLong"
-                value={form.orderOriginLong}
-                type="orderDestLong"
-                placeholder="orderDestLong"
-                onChange={handleInputChange}
-              />
-            </FormControl> */}
-
-            {/* <FormControl mt={6}>
-              <FormLabel>Destination Latitiude</FormLabel>
-              <Input
-                required
-                name="orderDestLat"
-                value={form.orderOriginLong}
-                type="orderDestLat"
-                placeholder="orderDestLat"
-                onChange={handleInputChange}
-              />
-            </FormControl> */}
             <FormControl mt={6}>
               <FormLabel>Order Items:</FormLabel>
-              <ButtonGroup size="sm" isAttached variant="outline" m={1}>
-                <Button mr="-px">Add New Order Item:</Button>
-                <IconButton aria-label="Add to Order" icon={<GrAdd />} />
-              </ButtonGroup>
 
               <List spacing={3} m={1}>
                 {orderItemsMap}

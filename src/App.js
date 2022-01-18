@@ -59,7 +59,7 @@ const App = () => {
 
   const getAllOrdersWithoutPorters = () => {
     if (user !== null && user.porter == true) {
-      fetch(`http://localhost:8000/orders/`, {
+      fetch(`${apiUrl}/orders/`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +88,7 @@ const App = () => {
   const getAllUserOrders = () => {
     if (user !== null && user.porter === false) {
       console.log(user);
-      fetch(`http://localhost:8000/orders/owner/${user._id}`, {
+      fetch(`${apiUrl}/orders/owner/${user._id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -106,7 +106,7 @@ const App = () => {
   const getAllPorterOrders = () => {
     if (user !== null && user.porter === true) {
       console.log(user);
-      fetch(`http://localhost:8000/orders/porter/${user._id}`, {
+      fetch(`${apiUrl}/orders/porter/${user._id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -74,7 +74,7 @@ const SignIn = (props) => {
         <Flex width="full" align="center" justifyContent="center">
             <Box p={2}>
                 <Box textAlign="center">
-                    <Heading>Sign In</Heading>
+                    <Heading className="title-fonts">Sign In</Heading>
                 </Box>
             <Box my={4} textAlign="left">
                 <form onSubmit={onSignIn}>

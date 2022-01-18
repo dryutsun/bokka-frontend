@@ -74,7 +74,7 @@ import {
           }
       }
       console.log("this PJB", preJSONBody)
-      fetch(`http://localhost:8000/orders`, {
+      fetch(`${apiUrl}/orders`, {
           method: 'POST',
           body: JSON.stringify(preJSONBody),
           headers: {
@@ -103,7 +103,6 @@ import {
             <Heading>Add New Order</Heading>
           </Box>
           <Box my={4} textAlign="left">
-            <UserMap />
             <form onSubmit={AddOrderForm}>
               <FormControl>
                 <FormLabel>Title</FormLabel>

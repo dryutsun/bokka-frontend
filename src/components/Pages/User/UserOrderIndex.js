@@ -12,20 +12,42 @@ import {
   GridItem,
   Button,
 } from "@chakra-ui/react";
-
+import styled from 'styled-components'
 import { Link } from "react-router-dom";
 import {useEffect, useState } from 'react'
+import apiUrl from "../../../apiConfig";
 
 
 const UserOrderIndex = (props) => {
+
+  const [hover, setHover] = useState(false)
+
+  
 
   useEffect(()=>{
     props.getAllUserOrders()
   },[])
 
+
+  const handleDelete = (e) => {
+    console.log(e.target.value)
+    fetch(`${apiUrl}/orders/${e.target.value} `, {
+      method: 'DELETE',
+          headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": `Bearer ${props.user.token}`,
+    }})
+    .then(() => props.getAllUserOrders())
+    .catch(error => console.log(error))
+  }
+
+
+
+
+
   console.log("props in UOI", props);
   // Requires handling to determine if an order has a porter --> This is bad logic, not all orders will have been accepted by porters.
-  const userOrderIndex = props.userOrders.map((orders) => {
+  const userOrderIndex = props.userOrders.map((orders, index) => {
     console.log(orders.porter);
     const orderid = "" + orders._id;
     if (!orders.porter) {
@@ -38,6 +60,7 @@ const UserOrderIndex = (props) => {
               <Link to={`/display/${orderid}`} orders={orders}>
                 <Button colorScheme="blue">See Details</Button>
               </Link>
+              <Button value={orderid} onClick={handleDelete} colorScheme="red">Delete</Button>
             </Flex>
           </Box>
         </Center>
@@ -50,9 +73,16 @@ const UserOrderIndex = (props) => {
               <Heading fontSize="xl">ORDER : {orders.title}</Heading>
               <Text fontSize="lg">CURRENT STATUS: {orders.status}</Text>
               <Text fontSize="lg">YOUR PORTER: {orders.porter.email}</Text>
-              <Link to={`/display/${orderid}`} orders={orders}>
-                <Button colorScheme="blue">See Details</Button>
-              </Link>
+              <Flex alignItems="center" justifyContent="center">
+                <Link to={`/display/${orderid}`} orders={orders}>
+                  <Button colorScheme="blue">See Details</Button>
+                </Link>
+                <Button 
+                alue={orderid} 
+                onClick={handleDelete} 
+                colorScheme="red">Delete</Button>
+              </Flex>
+              
             </Flex>
           </Box>
         </Center>

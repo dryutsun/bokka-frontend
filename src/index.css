@@ -1,4 +1,10 @@
-
+@font-face {
+  font-family: 'Sackers Gothic Light AT';
+  src: url('./fonts/SackersGothicLightAT.woff2') format('woff2'), url('./fonts/SackersGothicLightAT.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Sackers Gothic Light AT', 'Roboto', 'Oxygen',
@@ -6,6 +12,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  font-family: "Roboto"
+}
+
+
+.title-fonts {
+  font-family: 'Sackers Gothic Light AT', "Roboto"
 }
 
 code {
@@ -21,4 +36,9 @@ li {list-style-type: none;}
 
 .map-container {
   height: 400px;
-  }
+}
+
+
+.blueHover {
+
+}

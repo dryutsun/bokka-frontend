@@ -35,7 +35,7 @@ import {
     const getCurrentOrder = () => {
         setLoading(true)
         console.log(loading)
-        fetch(`http://localhost:8000/orders/${orderid}`, {
+        fetch(`${apiUrl}/orders/${orderid}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
