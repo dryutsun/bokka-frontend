@@ -23,7 +23,7 @@ import { GrAdd, GrFormSubtract } from "react-icons/gr";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import apiUrl from "../../../apiConfig"
 const EditOrder = (props) => {
   console.log("props in edit", props);
 

@@ -14,7 +14,7 @@ import {
   
   import { useState, useEffect } from 'react'
   import {useParams, Link} from 'react-router-dom'
-  
+  import apiUrl from "../../../apiConfig"
   const DisplayOrder = (props) => {
   
     console.log(props)

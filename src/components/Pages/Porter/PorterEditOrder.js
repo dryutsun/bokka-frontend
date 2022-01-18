@@ -18,7 +18,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 import styled from "styled-components"
-
+import apiUrl from "../../../apiConfig"
 import { MdListAlt } from "react-icons/md/";
 import { GrAdd } from "react-icons/gr";
 import { useState, useEffect } from "react";
@@ -156,7 +156,6 @@ const PorterEditOrder = (props) => {
               <Select
                 name="status"
                 id="status"
-                name="status"
                 placeholder="Select option"
                 onChange={handleInputChange}
               >

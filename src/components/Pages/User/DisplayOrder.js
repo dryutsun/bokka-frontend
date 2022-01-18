@@ -11,7 +11,7 @@ import {
   Switch,
   Text
 } from '@chakra-ui/react'
-
+import apiUrl from "../../../apiConfig"
 import { useState, useEffect } from 'react'
 import {useParams, Link} from 'react-router-dom'
 
