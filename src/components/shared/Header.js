@@ -9,7 +9,7 @@ const linkStyle = {
   fontFamily: "Roboto",
   fontWeight: "500",
 };
-const authenticatedOptions = (
+const authenticatedOptions = ({user}) => (
   <>
     <Nav.Link>
       <Link to="change-password" style={linkStyle}>
@@ -21,11 +21,14 @@ const authenticatedOptions = (
         Sign Out
       </Link>
     </Nav.Link>
+    {user.porter === false ? (<>
     <Nav.Link>
       <Link to="userorder_index" style={linkStyle}>
         UserOrderTest
       </Link>
     </Nav.Link>
+    </>
+    ) : (<>
     <Nav.Link>
       <Link to="porter_index" style={linkStyle}>
         Porter Order Index
@@ -36,8 +39,13 @@ const authenticatedOptions = (
         Porter Without Order Index
       </Link>
     </Nav.Link>
+    </>) }
   </>
 );
+
+
+
+
 
 const unauthenticatedOptions = (
   <>
@@ -79,7 +87,7 @@ const Header = ({ user }) => (
           <span className="navbar-text mr-2">Welcome, {user.email}</span>
         )}
         {alwaysOptions}
-        {user ? authenticatedOptions : unauthenticatedOptions}
+        {user ? authenticatedOptions({user}) : unauthenticatedOptions}
       </Nav>
     </Navbar.Collapse>
   </Navbar>
